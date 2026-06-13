@@ -351,8 +351,8 @@ if file1 is not None and file2 is not None:
             fig_batch.update_traces(marker=dict(size=4, opacity=0.7))
             fig_batch.update_layout(
                 paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
-                margin=dict(l=20, r=20, t=40, b=20),
+                legend=dict(orientation="h", yanchor="top", y=-0.18, xanchor="center", x=0.5),
+                margin=dict(l=20, r=20, t=60, b=40),
                 title=dict(
                     text="<b>图 1: 批次效应去除验证</b><br>"
                     "<span style='font-size:13px;color:#888;'>"
@@ -377,8 +377,8 @@ if file1 is not None and file2 is not None:
             fig_dataset.update_traces(marker=dict(size=4, opacity=0.7))
             fig_dataset.update_layout(
                 paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
-                margin=dict(l=20, r=20, t=40, b=20),
+                legend=dict(orientation="h", yanchor="top", y=-0.18, xanchor="center", x=0.5),
+                margin=dict(l=20, r=20, t=60, b=40),
                 title=dict(
                     text="<b>图 2: 跨疾病生物特征保留验证</b><br>"
                     "<span style='font-size:13px;color:#888;'>"
@@ -403,8 +403,8 @@ if file1 is not None and file2 is not None:
             fig_cond.update_traces(marker=dict(size=4, opacity=0.7))
             fig_cond.update_layout(
                 paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
-                margin=dict(l=20, r=20, t=40, b=20),
+                legend=dict(orientation="h", yanchor="top", y=-0.18, xanchor="center", x=0.5),
+                margin=dict(l=20, r=20, t=60, b=40),
                 title=dict(
                     text="<b>图 3: Z_inv 条件不变性验证</b><br>"
                     "<span style='font-size:13px;color:#888;'>"
