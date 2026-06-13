@@ -205,13 +205,13 @@ with up_center:
     col1, col2 = st.columns(2)
     with col1:
         file1 = st.file_uploader(
-            "Dataset 1 (伤口 / 物种 A)",
+            "细胞数据集 1",
             type=["h5ad"],
             key="f1",
         )
     with col2:
         file2 = st.file_uploader(
-            "Dataset 2 (黑色素瘤 / 物种 B)",
+            "细胞数据集 2",
             type=["h5ad"],
             key="f2",
         )
@@ -378,7 +378,7 @@ if file1 is not None and file2 is not None:
                 title=dict(
                     text="<b>图 2: 跨疾病生物特征保留验证</b><br>"
                     "<span style='font-size:13px;color:#888;'>"
-                    "伤口与黑色素瘤是否各聚一方？分得开 = 两种疾病真实的生物学差异被完整保留</span>",
+                    "两个数据集是否各自成团？分得开 = 两组数据的真实生物学差异被完整保留</span>",
                     x=0.5,
                 ),
             )
