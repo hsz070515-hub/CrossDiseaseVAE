@@ -430,24 +430,24 @@ if file1 is not None and file2 is not None:
             st.markdown("<br>", unsafe_allow_html=True)
             st.plotly_chart(fig_cond, use_container_width=True)
 
-            # 解读指南
-            st.markdown(
-                "<div style='padding:20px; background:#fafafa; border-radius:8px; "
-                "border:1px solid #e0e0e0; font-size:14px; line-height:1.8;'>"
-                "<b style='font-size:16px;'>三张图如何一起读</b><br><br>"
-                "<b>图 1</b> 看颜色是否像芝麻撒匀——这是 <b>\"去批次\"</b> 的证明。<br>"
-                "<b>图 2</b> 看两个数据集是否各占一方——这是 <b>\"保留生物学差异\"</b> 的证明。"
-                "两种完全不同的疾病本来就不该混在一起。<br>"
-                "<b>图 3</b> 是为了证明模型 <u>没有</u> 按 condition 标签强行分离细胞——"
-                "Z_inv 呈现的是细胞自身的身份（成纤维细胞、T 细胞...），"
-                "同一类型细胞无论来自 control 还是 disease 都会聚在一起。"
-                "<br><br>"
-                "<b>结论：</b>图 1 \"乱\"（批次混了）+ 图 2 \"不乱\""
-                "（两种病各自成团）+ 图 3 \"自然\"（condition 不割裂细胞类型）"
-                "= 完美平衡 <b>\"去批次噪音\"</b> 与 <b>\"留生物价值\"</b>。"
-                "</div>",
-                unsafe_allow_html=True,
-            )
+            # 解读指南（用 Streamlit 原生容器，自适应浅色/深色主题）
+            with st.container(border=True):
+                st.markdown("##### 三张图如何一起读")
+                st.markdown(
+                    "<b>图 1</b> 看颜色是否像芝麻撒匀——这是 <b>\"去批次\"</b> 的证明。"
+                    "<br><br>"
+                    "<b>图 2</b> 看两个数据集是否各占一方——这是 <b>\"保留生物学差异\"</b> 的证明。"
+                    "两种完全不同的疾病本来就不该混在一起。"
+                    "<br><br>"
+                    "<b>图 3</b> 是为了证明模型 <u>没有</u> 按 condition 标签强行分离细胞——"
+                    "Z_inv 呈现的是细胞自身的身份（成纤维细胞、T 细胞...），"
+                    "同一类型细胞无论来自 control 还是 disease 都会聚在一起。"
+                    "<br><br>"
+                    "<b>结论：</b>图 1 \"乱\"（批次混了）+ 图 2 \"不乱\""
+                    "（两种病各自成团）+ 图 3 \"自然\"（condition 不割裂细胞类型）"
+                    "= 完美平衡 <b>\"去批次噪音\"</b> 与 <b>\"留生物价值\"</b>。",
+                    unsafe_allow_html=True,
+                )
 
             # 下载
             st.markdown("<br>", unsafe_allow_html=True)
