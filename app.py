@@ -217,7 +217,7 @@ with up_center:
         )
 
     repo_root = os.path.dirname(__file__) or "."
-    checkpoint_path = os.path.join(repo_root, "output", "cross_disease_vae_final.pt")
+    checkpoint_path = os.path.join(repo_root, "cross_disease_vae_final.pt")
     has_checkpoint = os.path.exists(checkpoint_path)
 
     if not has_checkpoint:
