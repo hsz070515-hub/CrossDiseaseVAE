@@ -451,10 +451,11 @@ if file1 is not None and file2 is not None:
             out_adata = merged.copy()
             out_adata.obsm["X_crossdisease_vae"] = z_inv
 
-            # 修复: pandas ArrowStringArray 不被 h5ad 支持, 转为普通 object 类型
+            # 修复: pandas ArrowStringArray 不被 h5ad 支持, 全部转为普通 Python 字符串
             for col in out_adata.obs.columns:
-                if out_adata.obs[col].dtype == "string" or "ArrowStringArray" in str(type(out_adata.obs[col].values)):
-                    out_adata.obs[col] = out_adata.obs[col].astype(object)
+                out_adata.obs[col] = [str(v) for v in out_adata.obs[col]]
+            out_adata.obs.index = [str(v) for v in out_adata.obs.index]
+            out_adata.var.index = [str(v) for v in out_adata.var.index]
 
             out_tmp = os.path.join(tmp_dir, "integrated_output.h5ad")
             out_adata.write(out_tmp, compression="gzip")
