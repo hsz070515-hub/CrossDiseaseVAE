@@ -10,6 +10,10 @@ CrossDiseaseVAE --- 交互式演示网页
 import streamlit as st
 import numpy as np
 import pandas as pd
+
+# 关键修复：新版 pandas 默认用 ArrowStringArray，h5ad 不支持
+pd.options.future.infer_string = False
+
 import scanpy as sc
 import anndata
 import torch
@@ -451,11 +455,12 @@ if file1 is not None and file2 is not None:
             out_adata = merged.copy()
             out_adata.obsm["X_crossdisease_vae"] = z_inv
 
-            # 修复: pandas ArrowStringArray 不被 h5ad 支持, 全部转为普通 Python 字符串
+            # 修复: pandas ArrowStringArray 不被 h5ad 支持, 用 numpy object 强制覆盖
+            import numpy as np
             for col in out_adata.obs.columns:
-                out_adata.obs[col] = [str(v) for v in out_adata.obs[col]]
-            out_adata.obs.index = [str(v) for v in out_adata.obs.index]
-            out_adata.var.index = [str(v) for v in out_adata.var.index]
+                out_adata.obs[col] = np.array([str(v) for v in out_adata.obs[col]], dtype=object)
+            out_adata.obs.index = np.array([str(v) for v in out_adata.obs.index], dtype=object)
+            out_adata.var.index = np.array([str(v) for v in out_adata.var.index], dtype=object)
 
             out_tmp = os.path.join(tmp_dir, "integrated_output.h5ad")
             out_adata.write(out_tmp, compression="gzip")
