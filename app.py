@@ -216,14 +216,19 @@ with up_center:
             key="f2",
         )
 
-    checkpoint_path = os.path.join(
-        os.path.dirname(__file__), "output", "cross_disease_vae_final.pt"
-    )
+    repo_root = os.path.dirname(__file__) or "."
+    checkpoint_path = os.path.join(repo_root, "output", "cross_disease_vae_final.pt")
     has_checkpoint = os.path.exists(checkpoint_path)
 
     if not has_checkpoint:
+        # 调试信息：列出实际存在的文件，帮助定位问题
+        import glob
+        repo_files = sorted(glob.glob(os.path.join(repo_root, "**", "*"), recursive=True))
+        file_list = "\n".join(repo_files[:50]) if repo_files else "(空目录)"
         st.warning(
-            "未找到预训练模型 output/cross_disease_vae_final.pt"
+            f"未找到预训练模型\n\n"
+            f"期望路径: `{checkpoint_path}`\n\n"
+            f"仓库根目录 `{repo_root}` 下实际文件 (前 50 个):\n```\n{file_list}\n```"
         )
 
 # ====================================================================
